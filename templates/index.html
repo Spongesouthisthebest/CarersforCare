@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <title>Carers4Care</title>
+  <style>
+    html {
+      scroll-behavior: smooth; /* Added for smooth scrolling when clicking anchor links */
+    }
+
+    body {
+      color: black; /* Changed to black as requested */
+      margin: 0;
+      padding: 0; /* Removed padding-top as navbar is not fixed anymore */
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      font-family: 'Inter', sans-serif; /* Added a default nice font */
+      
+      /* Live gradient background for the body */
+      background: linear-gradient(270deg, #71AD05, #8AC9FE); /* Changed second color to #8AC9FE */
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Fade-in for elements on page load */
+    .fade-in-onload {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Fade-in for sections as they scroll into view */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Class added by JavaScript to make elements visible */
+    .fade-in-onload.is-visible,
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: -12px; /* Consider adjusting this for better visual spacing */
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      padding: 20px; /* Added padding for smaller screens */
+    }
+
+    .hero h1 {
+      font-weight: bolder;
+      font-size: clamp(3rem, 10vw, 5.5rem); /* Responsive font size */
+      margin: 0;
+      /* Gradient background for text */
+      background: linear-gradient(90deg, #CD5C5C, black, #CD5C5C);
+      background-size: 200% 100%; /* Make the gradient wider than the text */
+      -webkit-background-clip: text; /* Clip background to text shape */
+      -webkit-text-fill-color: transparent; /* Make text color transparent to show background */
+      animation: liveGradient 4s ease infinite alternate; /* Animation for gradient */
+    }
+
+    @keyframes liveGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    #herob {
+      color: #343a40; /* Changed to dark grey for readability on the new background */
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size */
+      padding: 0 15px; /* Padding for readability */
+    }
+
+    .explore {
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 24px; /* Slightly larger padding */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center content */
+      gap: 10px; /* Increased gap */
+      margin: 30px auto; /* Increased top/bottom margin */
+      width: auto; /* Auto width based on content */
+      min-width: 180px; /* Minimum width */
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      z-index: 1;
+      font-weight: 500; /* Added font weight */
+    }
+    .explore svg {
+      transition: transform 0.3s ease;
+    }
+    .explore:hover {
+        background-color: #f0f0f0; /* Lighter hover */
+    }
+    .explore:hover svg {
+      transform: translateX(5px);
+    }
+
+    .hrr{
+        border: none; /* Use border for hr */
+        height: 1px;
+        background-color: #343a40; /* Changed to dark grey */
+        width: clamp(60%, 75%, 45%); /* Responsive width */
+        margin: 40px auto; /* Increased margin */
+    }
+    /* Font Awesome and Raleway imports are kept as they were in the original snippet for testimonials */
+    /* However, ensure Font Awesome is actually used or remove if not */
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+    @import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+
+    figure.snip1157 {
+      font-family: 'Raleway', Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+      margin: 20px; /* Adjusted margin */
+      min-width: 280px; /* Adjusted min-width */
+      max-width: 340px; /* Adjusted max-width */
+      width: 100%;
+      color: #333;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Softer shadow */
+      border-radius: 8px; /* Added border radius to the figure */
+    }
+    figure.snip1157 * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+      transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+    }
+    figure.snip1157 img {
+      max-width: 100%;
+      vertical-align: middle;
+      height: 90px;
+      width: 90px;
+      border-radius: 50%;
+      margin: 30px 0 0 25px; /* Adjusted margin */
+      border: 3px solid white; /* Added border to image */
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    figure.snip1157 blockquote {
+      display: block;
+      border-radius: 8px; /* Consistent border radius */
+      position: relative;
+      background-color: #f8f9fa; /* Lighter background for quote */
+      padding: 30px 50px 35px 50px; /* Adjusted padding */
+      font-size: 0.9em; /* Slightly larger font */
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.7em; /* Improved line height */
+      font-style: italic;
+      color: #343a40; /* Darker text for better contrast */
+    }
+    figure.snip1157 blockquote:before,
+    figure.snip1157 blockquote:after {
+      font-family: 'FontAwesome'; /* Make sure FontAwesome is loaded if these are desired */
+      content: "\201C";
+      position: absolute;
+      font-size: 50px;
+      opacity: 0.2; /* Slightly less opaque */
+      font-style: normal;
+      color: #007bff; /* Themed quote marks */
+    }
+    figure.snip1157 blockquote:before {
+      top: 20px; /* Adjusted position */
+      left: 15px; /* Adjusted position */
+    }
+    figure.snip1157 blockquote:after {
+      content: "\201D";
+      right: 15px; /* Adjusted position */
+      bottom: 5px; /* Adjusted position */
+    }
+    figure.snip1157 .arrow {
+      top: 100%;
+      width: 0;
+      height: 0;
+      border-left: 0 solid transparent;
+      border-right: 25px solid transparent;
+      border-top: 25px solid #f8f9fa; /* Match quote background */
+      margin: 0;
+      position: absolute;
+      left: 50px; /* Position arrow under the image */
+    }
+    figure.snip1157 .author {
+      position: absolute;
+      bottom: 40px; /* Adjusted position */
+      left: 0; /* Align to left */
+      right: 0; /* Align to right */
+      padding: 0 25px 0 130px; /* Adjusted padding based on image size + margin */
+      margin: 0;
+      text-transform: uppercase;
+      color: #343a40; /* Changed to dark grey */
+      -webkit-transform: translateY(50%);
+      transform: translateY(50%);
+    }
+    figure.snip1157 .author h5 {
+      opacity: 0.9; /* Slightly more opaque */
+      margin: 0;
+      font-weight: 700; /* Bolder name */
+      font-size: 0.95em;
+    }
+    figure.snip1157 .author h5 span {
+      font-weight: 400;
+      text-transform: none;
+      padding-left: 8px; /* Increased padding */
+      display: block; /* Make span take new line for better readability if needed */
+      font-size: 0.8em;
+      opacity: 0.8;
+    }
+    .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch; /* Align items to have same height if possible */
+      gap: 30px; /* Adjusted gap */
+      padding: 40px 20px; /* Added more padding */
+    }
+
+    .test{
+        text-align: center;
+        font-family: 'Merriweather', serif !important; /* Ensure serif is a fallback */
+        font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+        margin-bottom: 30px; /* Added margin bottom */
+        color: black; /* Ensured it's black */
+    }
+
+    /* Navbar styling */
+    .navbar {
+        background-color: transparent !important; /* Made transparent */
+        backdrop-filter: none; /* Removed frosted glass effect */
+        position: relative; /* Ensure proper positioning for z-index */
+        z-index: 1030; /* Set a high z-index to be on top */
+    }
+    .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: black !important; /* Changed to black */
+    }
+    .nav-link {
+        margin-right: 10px; /* Spacing between nav links */
+        color: black !important; /* Changed to black */
+    }
+    .navbar-nav {
+        margin-right: auto!important; /* Default for Bootstrap to align left */
+    }
+    .nav-link:hover, .navbar-brand:hover {
+        color: #343a40 !important; /* Darker grey on hover */
+    }
+    .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for dropdown */
+        z-index: 1040; /* Higher z-index than the navbar to ensure it's on top */
+    }
+    .dropdown-item {
+        color: black !important; /* Changed to black */
+    }
+    .dropdown-item:hover {
+        background-color: #f0f0f0;
+    }
+
+
+    /* Ensure lottie players are responsive */
+    dotlottie-player {
+        max-width: 100%;
+    }
+    
+    /* Body padding for fixed navbar */
+    /* Removed padding-top as navbar is not fixed anymore */
+
+    /* Services Section Styling */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px; /* Space between cards */
+      padding: 40px 20px; /* Padding around the container */
+    }
+
+    .service-card {
+      background-color: white;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger, softer shadow */
+      padding-bottom: 25px; /* Adjusted padding to ensure text doesn't touch the bottom */
+      max-width: 400px; /* Max width for each card */
+      flex: 1 1 calc(33.333% - 60px); /* Three cards per row with gap */
+      min-width: 280px; /* Minimum width before wrapping */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden; /* Ensures image corners are within border-radius */
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px); /* Lift effect on hover */
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-card img {
+      width: 100%; /* Full width of the card */
+      height: 250px; /* Fixed height for consistency, adjust as needed for 30-40% */
+      object-fit: cover; /* Changed to 'cover' to fill the space and "expand through the whole width" */
+      background-repeat: no-repeat; /* Ensure no repetition if image is smaller */
+      background-position: center; /* Center the image within the space */
+      margin-bottom: 20px; /* Space below the image */
+      border-top-left-radius: 10px; /* Match card border radius */
+      border-top-right-radius: 10px; /* Match card border radius */
+      /* Removed padding as object-fit: cover will fill the entire image area */
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: black; /* Changed heading color to black */
+      padding: 0 15px; /* Add horizontal padding to heading */
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: left; /* Align description text left */
+      padding: 0 25px; /* Horizontal padding for paragraph */
+      margin-bottom: 20px; /* Space before button */
+    }
+
+    .service-card .btn {
+        margin-top: auto; /* Pushes the button to the bottom if cards have varying content height */
+    }
+
+    /* Responsive adjustments for service cards */
+    @media (max-width: 1200px) {
+      .service-card {
+        flex: 1 1 calc(50% - 60px); /* Two cards per row on medium screens */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .service-card {
+        flex: 1 1 100%; /* One card per row on small screens */
+        max-width: 500px; /* Max width for single card */
+      }
+    }
+
+    /* FAQ Section Styles */
+    .faq-container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Override Bootstrap Accordion styles for transparent look */
+    .accordion-item {
+        background-color: transparent; /* Make item background transparent */
+        border: none; /* Remove item border */
+        margin-bottom: 10px; /* Add some space between questions */
+    }
+
+    .accordion-header {
+        background-color: transparent; /* Make header background transparent */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Subtle separator line, changed to black */
+        padding-bottom: 10px; /* Space between text and line */
+    }
+
+    .accordion-button {
+        background-color: transparent !important; /* Force transparent background for button */
+        color: black !important; /* Ensure text is black */
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding: 0; /* Remove default padding from button */
+        box-shadow: none !important; /* Remove focus shadow */
+        border: none; /* Remove button border */
+    }
+
+    .accordion-button:hover {
+        color: #343a40 !important; /* Darker grey hover color for text */
+    }
+
+    .accordion-button::after {
+        filter: none; /* Removed invert as base color is now black */
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important; /* Black arrow */
+        margin-left: auto; /* Push arrow to the right */
+        transform: rotate(0deg); /* Reset initial rotation */
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        transform: rotate(180deg); /* Rotate arrow when expanded */
+    }
+    
+    .accordion-body {
+      padding: 15px 0; /* Adjust padding for body content */
+      color: #343a40; /* Darker text for content */
+      line-height: 1.6;
+      border-top: none; /* Remove top border of body */
+    }
+
+    /* New Section: Personalised Care Styling */
+    .personalised-care-section {
+      display: flex;
+      flex-direction: column; /* Stack on small screens */
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 40px;
+      color: black; /* Default text color, changed from white */
+      text-align: center;
+    }
+
+    @media (min-width: 992px) {
+      .personalised-care-section {
+        flex-direction: row; /* Side-by-side on larger screens */
+        text-align: left;
+        gap: 80px;
+        max-width: 1200px; /* Limit width for content */
+        margin: 0 auto;
+      }
+    }
+
+    .personalised-care-content {
+      flex: 1;
+      max-width: 600px; /* Limit width of text content */
+    }
+
+    .personalised-care-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: bold;
+      margin-bottom: 20px;
+      /* Gradient for this specific h2 */
+      background: linear-gradient(to right, #9F2B68, black);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .personalised-care-content .underline {
+      width: 80px;
+      height: 4px;
+      background-color: #4F7942; /* A nice green accent color */
+      margin: 0 auto 25px; /* Center for mobile, align for desktop */
+    }
+
+    @media (min-width: 992px) {
+      .personalised-care-content .underline {
+        margin: 0 0 25px 0; /* Align left for desktop */
+      }
+    }
+
+    .personalised-care-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #343a40; /* Darker text for body text */
+    }
+
+    .personalised-care-image {
+      flex: 1;
+      max-width: 600px; /* Limit width of image container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .personalised-care-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px; /* Slightly rounded corners for the image */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: transparent; /* Darker background for the footer */
+        color: #343a40; /* Lighter grey text, changed from #b3b4bd */
+        padding: 40px 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 50px; /* Space above the footer */
+    }
+
+    footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    footer .footer-section {
+        flex: 1 1 250px; /* Allows sections to wrap and grow */
+        min-width: 200px;
+        padding: 10px;
+    }
+
+    footer h5 {
+        color: black; /* Black headings, changed from white */
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    footer p, footer a {
+        color: #343a40; /* Darker grey for links and paragraphs */
+        text-decoration: none;
+        line-height: 1.8;
+    }
+
+    footer a:hover {
+        color: black; /* Black hover for links */
+    }
+
+    footer .social-icons a {
+        display: inline-block;
+        margin: 0 10px;
+        color: black; /* Changed to black */
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+        color: #4F7942; /* Green hover for social icons */
+    }
+
+    footer .bottom-bar {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1); /* Changed border color to black with transparency */
+        text-align: center;
+        color: #555; /* Darker grey */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fade-in-onload">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="static/images/c4c.png" style="width:90px;height:90px;"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ndis">NDIS</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/assist-personal-activity">Assist Personal Activity</a></li>
+              <li><a class="dropdown-item" href="/assist-travel-transport">Assist Travel/Transport</a></li>
+              <li><a class="dropdown-item" href="/community-participation">Community Participation</a></li>
+              <li><a class="dropdown-item" href="/assist-life-stage">Assist Life Stage</a></li>
+              <li><a class="dropdown-item" href="/daily-task-shared-living">Daily Task/Shared Living</a></li>
+              <li><a class="dropdown-item" href="/respite-care">Respite Care</a></li>
+              <li><a class="dropdown-item" href="/gardening">Gardening</a></li>
+              <li><a class="dropdown-item" href="/ndis-cleaning">NDIS Cleaning</a></li>
+              <li><a class="dropdown-item" href="/sil">SIL</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/contact-us">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<br><br><br><br>
+<div class="hero fade-in-onload">
+    <h1>Carers4Care</h1>
+  </div>
+  <p id="herob" class="fade-in-onload">
+    Compassionate in-home and community care services that support your independence,
+    health,<br />
+    and everyday living—delivered with heart by people who truly care, right here in Adelaide, Australia.
+  </p>
+  <dotlottie-player
+  src="https://lottie.host/863cf2ee-51cf-4521-8d11-ccc9b2c20c72/eRDZJKRSyT.lottie"
+  background="transparent"
+  speed="1"
+  style="width: 300px; height: 300px; display: block; margin:auto;"
+  loop
+  autoplay
+></dotlottie-player>
+
+  <button class="explore fade-in-onload" id="exploreBtn">
+    Explore Our Services
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18" height="18" fill="currentColor"
+      class="bi bi-arrow-right"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1
+      .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293
+      8.5H1.5A.5.5 0 0 1 1 8"
+      />
+    </svg>
+  </button>
+
+  <br>
+  <br>
+  <hr class="hrr fade-in-section"/>
+  <br>
+  <br>
+  
+  <h1 class="test fade-in-section">Hear From Our Community</h1>
+  <br>
+  
+  <div class="testimonials fade-in-section">
+    
+    <figure class="snip1157">
+        <blockquote>The team at Carers4Care has been a blessing for our family. Mum receives such wonderful, respectful care at home, and it's given us all peace of mind. They truly go above and beyond.
+          <div class="arrow"></div>
+        </blockquote>
+        <img src="https://placehold.co/90x90/E0E0E0/757575?text=C4C" alt="Carers4Care Client" />
+        <div class="author">
+          <h5>Anonymous <span>Adelaide, Australia</span></h5>
+        </div>
+      </figure>
+      <figure class="snip1157 hover">
+        <blockquote>I was worried about losing my independence, but Carers4Care provides just the right amount of support I need to continue living comfortably in my own home. The carers are so friendly and professional.
+          <div class="arrow"></div>
+        </blockquote>
+        <img src="https://placehold.co/90x90/D1C4E9/673AB7?text=C4C" alt="Carers4Care Client" />
+        <div class="author">
+          <h5>Anonymous <span>Adelaide, Australia</span></h5>
+        </div>
+      </figure>
+      <figure class="snip1157">
+        <blockquote>Finding reliable and compassionate care felt overwhelming until we found Carers4Care. Their NDIS support coordination has been fantastic, and the care workers are simply wonderful with my son. Highly recommend!
+          <div class="arrow"></div>
+        </blockquote>
+        <img src="https://placehold.co/90x90/C8E6C9/4CAF50?text=C4C" alt="Carers4Care Client" />
+        <div class="author">
+          <h5>Anonymous <span>Adelaide, Australia</span></h5>
+        </div>
+      </figure>
+  </div>
+  <br><br>
+  <hr class="hrr fade-in-section"/>
+  <br>
+  <br>
+  <h1 class="test fade-in-section">
+    Comprehensive Care,<br>Tailored for You
+  </h1>
+  <br>
+  
+  <div class="services-container fade-in-section" id="services">
+    <div class="service-card">
+      <img src="static/images/personal.png" alt="In-Home Care Icon">
+      <h3>Assist Personal Activity</h3>
+      <p>We offer personalized assistance for daily activities, empowering independence and well-being for your loved ones.</p>
+      <a href="/assist-personal-activity" class="btn btn-outline-dark">Read More</a>
+    </div>
+    <div class="service-card">
+      <img src="static/images/clean2.png" alt="Social & Community Supports Icon">
+      <h3>NDIS Cleaning</h3>
+      <p>Our NDIS cleaning service is specifically designed to meet the unique cleaning needs of people with special needs.</p>
+      <a href="/ndis-cleaning" class="btn btn-outline-dark">Read More</a>
+    </div>
+    <div class="service-card">
+      <img src="static/images/act1.png" alt="Clinical Supports Icon">
+      <h3>Assist Travel/Transport</h3>
+      <p>Carers4Care provides expert travel and transport assistance services in Adelaide.</p>
+      <a href="/assist-travel-transport" class="btn btn-outline-dark">Read More</a>
+    </div>
+    <div class="service-card">
+      <img src="static/images/apart.png" alt="Support Coordination Icon">
+      <h3>Community Participation</h3>
+      <p>We offer community participation services in Adelaide, promoting engagement and inclusivity.</p>
+      <a href="/community-participation" class="btn btn-outline-dark">Read More</a>
+    </div>
+    <div class="service-card">
+      <img src="static/images/life.png" alt="Affordable Private Packages Icon">
+      <h3>Assist Life Stage</h3>
+      <p>We aim to help individuals transition through critical life stages with ease and confidence.</p>
+      <a href="/assist-life-stage" class="btn btn-outline-dark">Read More</a>
+    </div>
+    <div class="service-card">
+        <img src="static/images/about3.png" alt="Affordable Private Packages Icon">
+        <h3>Daily Tasks/Shared Living</h3>
+        <p>Navigating daily tasks is instinctual and vital for thriving in life</p>
+        <a href="/daily-task-shared-living" class="btn btn-outline-dark">Read More</a>
+      </div>
+      <div class="service-card">
+        <img src="static/images/respite.png" alt="Affordable Private Packages Icon">
+        <h3>Respite Care</h3>
+        <p>Caring for your loved ones can be deeply fulfilling, but also exhausting. This is where you can take a temporary break or respite.</p>
+        <a href="/respite-care" class="btn btn-outline-dark">Read More</a>
+      </div>
+      <div class="service-card">
+        <img src="static/images/gardening.png" alt="Affordable Private Packages Icon">
+        <h3>Gardening</h3>
+        <p>At Carers4Care, gardening is a popular service, and our passionate gardeners take pride in their work.</p>
+        <a href="/gardening" class="btn btn-outline-dark">Read More</a>
+      </div>
+      <div class="service-card">
+        <img src="static/images/sil4.png" alt="Affordable Private Packages Icon">
+        <h3>SIL</h3>
+        <p>Explore Convenient SIL Accommodation Options by Carers4Care</p>
+        <a href="/sil" class="btn btn-outline-dark">Explore</a>
+      </div>
+
+  </div>
+
+  <br><br>
+  <hr class="hrr fade-in-section"/>
+  <br>
+  <br>
+
+  <section class="personalised-care-section fade-in-section">
+    <div class="personalised-care-content">
+        <h2>Tailored Care That Puts<br>YOUR Needs First</h2>
+        <div class="underline"></div>
+        <p>At Carers4Care, we believe in crafting support that truly fits. Every individual has unique requirements and aspirations, which is why we meticulously design our services to align with your personal goals and lifestyle preferences. From daily assistance at home to fostering community engagement or providing specialised clinical help, our dedicated team is here to empower you on your journey to greater well-being and independence.</p>
+    </div>
+    <div class="personalised-care-image">
+      <img src="static/images/mid.jpg" alt="Group of people smiling and holding ice creams">
+    </div>
+</section>
+<a href="/contact-us" style="text-decoration: none; color:black;" target="_blank"><button class="explore fade-in-section">Contact Us     <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18" height="18" fill="currentColor"
+    class="bi bi-arrow-right"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1
+    .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293
+    8.5H1.5A.5.5 0 0 1 1 8"
+    />
+  </svg></button></a>
+  <br><br>
+  <hr class="hrr fade-in-section"/>
+  <br>
+  <br>
+
+
+  
+  <br><br>  <footer class="fade-in-section">
+    <div class="container">
+      <div class="footer-section">
+        <h5>Contact Us</h5>
+        <p>Phone: <a href="tel:0426488018">0426488018</a></p>
+        <p>Email: <a href="mailto:info@carersforcare.com.au">info@carersforcare.com.au</a></p>
+      </div>
+      <div class="footer-section">
+        <h5>Quick Links</h5>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about-us">About Us</a></p>
+        <p><a href="/#services">Our Services</a></p>
+        <p><a href="/contact-us">Contact Us</a></p>
+      </div>
+      <div class="footer-section">
+        <h5>Follow Us</h5>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/carers4care/" aria-label="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.269.087 3.85.048 4.703.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.95.923 1.417.444.45.869.732 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372a3.917 3.917 0 0 0 1.417-.923 3.927 3.927 0 0 0 .923-1.417c.198-.509.333-1.09.372-1.942.04-2.172.04-2.444.04-3.297 0-2.173-.01-2.445-.048-3.297-.04-.852-.174-1.433-.372-1.942a3.917 3.917 0 0 0-.923-1.417A3.927 3.927 0 0 0 13.24 0.42c-.509-.198-1.09-.333-1.942-.372C10.444.01 10.172 0 8 0zm0 1.6C10.057 1.6 10.311 1.61 11.134 1.648c.789.038 1.139.155 1.417.26a2.66 2.66 0 0 1 .976.666c.334.333.618.704.838 1.103.218.4.352.822.372 1.344.038.823.047 1.076.047 3.234s-.009 2.411-.047 3.234c-.02.522-.154.944-.372 1.344a2.66 2.66 0 0 1-.838 1.103 2.66 2.66 0 0 1-.976.666c-.278.105-.628.222-1.417.26-.823.038-1.077.047-3.234.047s-2.411-.009-3.234-.047c-.789-.038-1.139-.155-1.417-.26a2.66 2.66 0 0 1-.976-.666 2.66 2.66 0 0 1-.838-1.103c-.218-.4-.352-.822-.372-1.344-.038-.823-.047-1.076-.047-3.234s.009-2.411.047-3.234c.02-.522.154-.944.372-1.344a2.66 2.66 0 0 1 .838-1.103 2.66 2.66 0 0 1 .976-.666c.278-.105.628-.222 1.417-.26.823-.038 1.077-.047 3.234-.047zM8 5.8c-2.324 0-4.2 1.876-4.2 4.2s1.876 4.2 4.2 4.2 4.2-1.876 4.2-4.2S10.324 5.8 8 5.8zm0 1.6c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4-2.4-1.075-2.4-2.4 1.075-2.4 2.4-2.4zm5.4-.5a1.44 1.44 0 0 1-1.44 1.44H12.3c-.79 0-1.44-.65-1.44-1.44v-.001c0-.79.65-1.44 1.44-1.44h.6c.79 0 1.44.65 1.44 1.44v.001z"/>
+              </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <p>&copy; 2025 Carers4Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId.length > 1) {
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.warn(`Smooth scroll target ${targetId} not found.`);
+                }
+            }
+        });
+    });
+
+    const exploreBtn = document.getElementById('exploreBtn');
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', () => {
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                const servicesNavLink = document.querySelector('a.nav-link[href="#services"]');
+                if (servicesNavLink) {
+                    servicesNavLink.click();
+                } else {
+                    console.warn("Explore button: Services section or nav link not found.");
+                }
+            }
+        });
+    }
+
+    // Removed the JavaScript for background color transition as it's no longer needed for a fixed gradient
+
+    // JavaScript for fade-in animations on page load and scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fade in on page load
+      const elementsToFadeInOnLoad = document.querySelectorAll('.fade-in-onload');
+      elementsToFadeInOnLoad.forEach((element, index) => {
+        // Stagger the animation for a nicer effect
+        element.style.transitionDelay = `${index * 0.1}s`; 
+        element.classList.add('is-visible');
+      });
+
+      // Fade in sections on scroll
+      const fadeElements = document.querySelectorAll('.fade-in-section');
+
+      const checkVisibility = () => {
+        fadeElements.forEach(element => {
+          const rect = element.getBoundingClientRect();
+          // Check if element is within viewport (with a buffer)
+          if (rect.top < window.innerHeight - 100 && rect.bottom > 100) {
+            element.classList.add('is-visible');
+          }
+        });
+      };
+
+      window.addEventListener('scroll', checkVisibility);
+      window.addEventListener('resize', checkVisibility);
+      // Initial check on load in case elements are already in view
+      checkVisibility();
+    });
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

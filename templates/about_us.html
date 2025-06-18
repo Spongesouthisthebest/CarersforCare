@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Us | Carers4Care</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<style>
+body {
+background-color: white;
+color: black;
+font-family: 'Lora', sans-serif;
+overflow-x: hidden; 
+}
+body {
+    /* Apply the animation on page load */
+    animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start completely transparent */
+    }
+    to {
+        opacity: 1; /* End fully opaque */
+    }
+}
+
+.navbar {
+background-color: transparent !important;
+backdrop-filter: none;
+position: relative;
+z-index: 1030;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+color: black !important;
+font-weight: 500;
+}
+
+.navbar-brand {
+font-size: 1.5rem;
+}
+
+.nav-link {
+margin-right: 10px;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+color: #343a40 !important;
+}
+
+.dropdown-menu {
+background-color: rgba(255, 255, 255, 0.9);
+z-index: 1040;
+}
+
+.dropdown-item {
+color: black !important;
+}
+
+
+/* Fade-in for elements on page load */
+.fade-in-onload {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Fade-in for sections as they scroll into view */
+.fade-in-section {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-onload.is-visible,
+.fade-in-section.is-visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.hero-section {
+background-image: url('static/images/about3.png');
+background-size: cover;
+background-position: center;
+width: 100%;
+height: 400px; /* Adjust height as needed */
+display: flex;
+align-items: center;
+padding-left: 50px; /* Margin from the left */
+transform: scale(1); /* Initial scale for zoom effect */
+transition: transform 2s ease-out, opacity 0.8s ease-out, transform 0.8s ease-out; /* Add transform to existing transition */
+}
+
+.hero-section h1 {
+font-family: 'Inter', sans-serif;
+font-weight: bold;
+color: white; /* Choose a color that contrasts well with your image */
+font-size: 3rem; /* Adjust font size as needed */
+margin-left: 30px;
+}
+.moto{
+font-family: 'Lora',sans-serif;
+text-align: center;
+}
+.motive{
+width:60%;
+display: block;
+margin:auto;
+}
+.highlight{
+color:#29AB3E;
+}
+.sets-us-apart {
+width: 100%; /* Changed to 100% as requested */
+padding: 20px; /* Add some padding for better spacing */
+}
+.sets-us-apart img {
+max-width: 100%;
+height: auto;
+display: block; /* Ensures image behaves like a block element */
+margin: auto; /* Center image if it's smaller than its container */
+}
+
+/* Responsive adjustments for text alignment and margins */
+@media (max-width: 767.98px) {
+.hero-section {
+padding-left: 20px; /* Adjust padding for smaller screens */
+}
+.hero-section h1 {
+font-size: 2.5rem; /* Adjust font size for smaller screens */
+}
+.moto {
+font-size: 1.2rem; /* Adjust font size for smaller screens */
+}
+.motive {
+width: 90%; /* Adjust width for smaller screens */
+padding: 0 15px; /* Add horizontal padding */
+}
+.sets-us-apart h2,
+.sets-us-apart p {
+margin-left: 0; /* Remove left margin on smaller screens */
+text-align: center; /* Center text on smaller screens */
+}
+}
+.get-in-touch {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 50px;
+}
+
+.get-in-touch h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.get-in-touch p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.get-in-touch .btn-dark {
+    background-color: black; /* Dark button color */
+    border:none;
+    color: white;
+    padding: 10px 25px; /* Longer padding */
+    border-radius: 50px; /* Rounded corners */
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.get-in-touch .btn-dark svg {
+    vertical-align: middle;
+    margin-left: 8px; /* Space between text and icon */
+}
+
+footer {
+background-color: #f8f8f8; /* Changed to a light grey to ensure visibility */
+color: black;
+padding: 40px 20px;
+font-size: 0.9rem;
+text-align: center;
+margin-top: 50px;
+}
+
+footer .container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+gap: 30px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+footer .footer-section {
+flex: 1 1 250px;
+min-width: 200px;
+padding: 10px;
+}
+
+footer h5 {
+color: black;
+font-size: 1.1rem;
+margin-bottom: 15px;
+font-weight: bold;
+}
+
+footer p, footer a {
+color: #343a40;
+text-decoration: none;
+line-height: 1.8;
+}
+
+footer a:hover {
+color: black;
+}
+
+footer .social-icons a {
+display: inline-block;
+margin: 0 10px;
+color: black;
+font-size: 1.5rem;
+transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+color: #4F7942;
+}
+
+footer .bottom-bar {
+margin-top: 40px;
+padding-top: 20px;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+text-align: center;
+color: #555;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fade-in-onload">
+<div class="container-fluid">
+<a class="navbar-brand" href="/">Carers4Care</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="/about-us">About Us</a></li>
+<li class="nav-item"><a class="nav-link" href="/ndis">NDIS</a></li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+data-bs-toggle="dropdown" aria-expanded="false">
+Services
+</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<li><a class="dropdown-item" href="/assist-personal-activity">Assist Personal Activity</a></li>
+<li><a class="dropdown-item" href="/assist-travel-transport">Assist Travel/Transport</a></li>
+<li><a class="dropdown-item" href="/community-participation">Community Participation</a></li>
+<li><a class="dropdown-item" href="/assist-life-stage">Assist Life Stage</a></li>
+<li><a class="dropdown-item" href="/daily-task-shared-living">Daily Task/Shared Living</a></li>
+<li><a class="dropdown-item" href="/respite-care">Respite Care</a></li>
+<li><a class="dropdown-item" href="/gardening">Gardening</a></li>
+<li><a class="dropdown-item" href="/ndis-cleaning">NDIS Cleaning</a></li>
+<li><a class="dropdown-item" href="/sil">SIL</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link" href="/contact-us">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="hero-section fade-in-onload">
+<h1>Our Values</h1>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h3 class="moto fade-in-section">We believe business should empower people with <span class="highlight">care</span>,<br>inspire independence, and strengthen communities.</h3>
+<p style="text-align: center; color:#898a92;" class="fade-in-section">-Carers4Care CEO Shadab Hossain</p>
+<br>
+<br>
+<br>
+<div class="motive fade-in-section">
+<p style="text-align: center; font-family:'Inter',sans-serif;">Our mission is to provide compassionate, personalized support that empowers individuals with disabilities to live independently and participate fully in their communities. We offer tailored services—from daily living assistance to respite care—designed to enhance quality of life and foster lasting connections.</p>
+</div>
+<br>
+<h1 style="height:1px; width:45%; display:block; margin:auto; background-color:#898a92;"></h1>
+<br>
+<br>
+<div class="container sets-us-apart fade-in-section">
+<div class="row d-flex align-items-center">
+<div class="col-md-6 mb-3 mb-md-0"> <h2>What sets us apart</h2>
+<br>
+<p>
+We combine deep compassion with personalized care plans tailored to each individual’s unique needs and goals. Our 24/7 support, highly trained staff, and commitment to empowering independence ensure not just care, but true partnership. With a focus on respect, reliability, and community connection, we go beyond services—we build lasting relationships.
+</p>
+</div>
+<div class="col-md-6">
+<img src="static/images/apart.png" alt="What sets us apart image" class="img-fluid">
+</div>
+</div>
+</div>
+<br>
+<h1 style="height:1px; width:45%; display:block; margin:auto; background-color:#898a92;"></h1>
+<br>
+<br>
+<div class="get-in-touch fade-in-section">
+    <h2>Ready to get started?</h2>
+    <p>Contact us today to learn more about our services and how we can support you or your loved one.</p>
+    <a href="/contact-us" class="btn btn-dark rounded-pill px-4 py-2">
+        Contact Us
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+    </a>
+</div>
+<br>
+<br><br>  <footer class="fade-in-section">
+    <div class="container">
+      <div class="footer-section">
+        <h5>Contact Us</h5>
+        <p>Phone: <a href="tel:0426488018">0426488018</a></p>
+        <p>Email: <a href="mailto:info@carersforcare.com.au">info@carersforcare.com.au</a></p>
+      </div>
+      <div class="footer-section">
+        <h5>Quick Links</h5>
+        <p><a href="/">Home</a></p>
+        <p><a href="/about-us">About Us</a></p>
+        <p><a href="/#services">Our Services</a></p>
+        <p><a href="/contact-us">Contact Us</a></p>
+      </div>
+      <div class="footer-section">
+        <h5>Follow Us</h5>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/carers4care/" aria-label="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.269.087 3.85.048 4.703.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.95.923 1.417.444.45.869.732 1.417.923.509.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372a3.917 3.917 0 0 0 1.417-.923 3.927 3.927 0 0 0 .923-1.417c.198-.509.333-1.09.372-1.942.04-2.172.04-2.444.04-3.297 0-2.173-.01-2.445-.048-3.297-.04-.852-.174-1.433-.372-1.942a3.917 3.917 0 0 0-.923-1.417A3.927 3.927 0 0 0 13.24 0.42c-.509-.198-1.09-.333-1.942-.372C10.444.01 10.172 0 8 0zm0 1.6C10.057 1.6 10.311 1.61 11.134 1.648c.789.038 1.139.155 1.417.26a2.66 2.66 0 0 1 .976.666c.334.333.618.704.838 1.103.218.4.352.822.372 1.344.038.823.047 1.076.047 3.234s-.009 2.411-.047 3.234c-.02.522-.154.944-.372 1.344a2.66 2.66 0 0 1-.838 1.103 2.66 2.66 0 0 1-.976.666c-.278.105-.628.222-1.417.26-.823.038-1.077.047-3.234.047s-2.411-.009-3.234-.047c-.789-.038-1.139-.155-1.417-.26a2.66 2.66 0 0 1-.976-.666 2.66 2.66 0 0 1-.838-1.103c-.218-.4-.352-.822-.372-1.344-.038-.823-.047-1.076-.047-3.234s.009-2.411.047-3.234c.02-.522.154-.944.372-1.344a2.66 2.66 0 0 1 .838-1.103 2.66 2.66 0 0 1 .976-.666c.278-.105.628-.222 1.417-.26.823-.038 1.077-.047 3.234-.047zM8 5.8c-2.324 0-4.2 1.876-4.2 4.2s1.876 4.2 4.2 4.2 4.2-1.876 4.2-4.2S10.324 5.8 8 5.8zm0 1.6c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4-2.4-1.075-2.4-2.4 1.075-2.4 2.4-2.4zm5.4-.5a1.44 1.44 0 0 1-1.44 1.44H12.3c-.79 0-1.44-.65-1.44-1.44v-.001c0-.79.65-1.44 1.44-1.44h.6c.79 0 1.44.65 1.44 1.44v.001z"/>
+              </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <p>&copy; 2025 Carers4Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Apply 'is-visible' to elements with 'fade-in-onload' on page load
+        document.querySelectorAll('.fade-in-onload').forEach(el => {
+            el.classList.add('is-visible');
+        });
+
+        // Set up Intersection Observer for 'fade-in-section' elements
+        const faders = document.querySelectorAll('.fade-in-section');
+
+        const appearOptions = {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+            rootMargin: "0px 0px -50px 0px" // Start observing slightly before the element enters the viewport
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(
+            entries,
+            appearOnScroll
+        ) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    });
+</script>
+</body>
+</html>
