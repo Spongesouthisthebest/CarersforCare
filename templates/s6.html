@@ -78,7 +78,7 @@
 
     /* Hero section for Assist Personal Activity */
     .service-hero {
-        background-image: url('static/images/daily.png'); /* You might want to change this image for life stage */
+        background-image: url("{{ url_for('static', filename='images/daily.png') }}"); /* You might want to change this image for life stage */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -497,7 +497,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fade-in-onload">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="static/images/c4c.png" style="width:90px;height:90px;"></a>
+            <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='images/c4c.png') }}" style="width:90px; height:90px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -577,7 +577,7 @@
             </ul>
         </div>
         <div class="personal-care-image scroll-reveal-item">
-            <img src="static/images/work.png" alt="Life Stage Transition Assistance">
+            <img src="{{ url_for('static', filename='images/work.png')}}">
         </div>
     </div>
     <br>
@@ -658,7 +658,7 @@
             </ul>
         </div>
         <div class="life-stage-image scroll-reveal-item">
-            <img src="static/images/sil.png" alt="Life Stage Transition Assistance by Carers4Care">
+            <img src="{{ url_for('static', filename='images/sil.png')}}">
         </div>
     </div>
 
