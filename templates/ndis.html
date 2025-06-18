@@ -80,7 +80,7 @@
 
     /* Styles for the new NDIS hero div */
     .ndis-hero {
-        background-image: url('static/images/ndis2.png'); /* Set your image path here */
+        background-image: url("{{ url_for('static', filename='images/ndis2.png') }}"); /* Set your image path here */
         background-size: cover; /* Ensures the image covers the entire div */
         background-position: center; /* Centers the image */
         background-repeat: no-repeat; /* Prevents image repetition */
@@ -415,7 +415,7 @@
             </p>
         </div>
         <div class="why-us-image scroll-reveal-item">
-            <img src="static/images/trust.png" alt="Trustworthy service with Carers4Care">
+            <img src="{{ url_for('static', filename='images/trust.png')}}">
         </div>
     </div>
 
