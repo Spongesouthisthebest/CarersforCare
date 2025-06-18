@@ -78,7 +78,7 @@
 
     /* Hero section for Assist Personal Activity */
     .service-hero {
-        background-image: url('static/images/act1.png');
+        background-image: url("{{ url_for('static', filename='images/act1.png') }}");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -347,7 +347,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fade-in-onload">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="static/images/c4c.png" style="width:90px;height:90px;"></a>
+            <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='images/c4c.png')}} style='width:90px;height:90px;'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -446,7 +446,7 @@
             </ul>
         </div>
         <div class="personal-care-image scroll-reveal-item">
-            <img src="static/images/life.png" alt="Personal care assistance">
+            <img src="{{ url_for('static', filename='images/life.png')}}">
         </div>
     </div>
     <br>
